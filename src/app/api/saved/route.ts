@@ -1,85 +1,68 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { getServerSession } from "next-auth";
+import { auth } from "@/auth";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
-    const session = await getServerSession();
+    const session = await auth();
+    if (!session?.user?.email) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const user = await prisma.user.findUnique({ 
+      where: { email: session.user.email } 
+    });
     
-    if (!session?.user?.id) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
+    if (!user) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
     const savedColleges = await prisma.savedCollege.findMany({
-      where: { userId: session.user.id },
-      include: {
-        college: true
-      },
-      orderBy: { createdAt: 'desc' }
+      where: { userId: user.id },
+      include: { college: true },
+      orderBy: { createdAt: "desc" },
     });
 
-    return NextResponse.json(savedColleges.map(sc => sc.college));
+    return NextResponse.json(savedColleges.map((sc) => sc.college));
   } catch (error) {
     console.error("Error fetching saved colleges:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch saved colleges" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to fetch saved colleges" }, { status: 500 });
   }
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession();
+    const session = await auth();
+    if (!session?.user?.email) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const user = await prisma.user.findUnique({ 
+      where: { email: session.user.email } 
+    });
     
-    if (!session?.user?.id) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
+    if (!user) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
     const { collegeId } = await request.json();
-
     if (!collegeId) {
-      return NextResponse.json(
-        { error: "College ID is required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "College ID required" }, { status: 400 });
     }
 
-    // Check if already saved
     const existing = await prisma.savedCollege.findFirst({
-      where: {
-        userId: session.user.id,
-        collegeId: collegeId
-      }
+      where: { userId: user.id, collegeId },
     });
 
     if (existing) {
-      // Unsave
-      await prisma.savedCollege.delete({
-        where: { id: existing.id }
-      });
+      await prisma.savedCollege.delete({ where: { id: existing.id } });
       return NextResponse.json({ saved: false });
     } else {
-      // Save
-      await prisma.savedCollege.create({
-        data: {
-          userId: session.user.id,
-          collegeId: collegeId
-        }
-      });
+      await prisma.savedCollege.create({ data: { userId: user.id, collegeId } });
       return NextResponse.json({ saved: true });
     }
   } catch (error) {
     console.error("Error toggling saved college:", error);
-    return NextResponse.json(
-      { error: "Failed to toggle saved college" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to toggle saved college" }, { status: 500 });
   }
 }
