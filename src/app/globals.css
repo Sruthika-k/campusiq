@@ -6,6 +6,10 @@
   --muted: #78716c;
   --border: #e7e5e4;
   --accent: #0f766e;
+  --accent-light: #14b8a6;
+  --accent-dark: #0f766e;
+  --amber: #f59e0b;
+  --amber-light: #fbbf24;
 }
 
 @theme inline {
@@ -22,8 +26,299 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+  position: relative;
+}
+
+/* Subtle grain texture */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.03;
+  z-index: -1;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(circle at 25% 25%, #000 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, #000 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: 0 0, 25px 25px;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading), system-ui, -apple-system, sans-serif;
+}
+
+/* Frosted glass navbar */
+.navbar-frosted {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(250, 250, 249, 0.8);
+  border-bottom: 1px solid rgba(231, 229, 228, 0.5);
+}
+
+/* Animated underline for nav links */
+.nav-link {
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-light), var(--accent-dark));
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* College card enhancements */
+.college-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--border);
+}
+
+.college-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px -5px rgba(15, 118, 110, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Accent button with subtle gradient */
+.btn-accent {
+  background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent-dark) 100%);
+  transition: all 0.2s ease;
+}
+
+.btn-accent:hover {
+  background: linear-gradient(135deg, var(--accent-dark) 0%, #0d635c 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 118, 110, 0.25);
+}
+
+/* Stat card with colored top border */
+.stat-card {
+  border-top: 3px solid var(--accent);
+}
+
+/* Rating badge - amber/gold and pill shaped */
+.rating-badge {
+  background: linear-gradient(135deg, var(--amber-light) 0%, var(--amber) 100%);
+  color: white;
+  border-radius: 9999px;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* College card avatar with warm gradient */
+.avatar-gradient {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 50%, #dc2626 100%);
+}
+
+/* Entrance animations for cards */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-animate {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.card-animate:nth-child(1) { animation-delay: 0.1s; }
+.card-animate:nth-child(2) { animation-delay: 0.15s; }
+.card-animate:nth-child(3) { animation-delay: 0.2s; }
+.card-animate:nth-child(4) { animation-delay: 0.25s; }
+.card-animate:nth-child(5) { animation-delay: 0.3s; }
+.card-animate:nth-child(6) { animation-delay: 0.35s; }
+
+/* Shimmer animation for loading states */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--border) 25%,
+    rgba(231, 229, 228, 0.3) 50%,
+    var(--border) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Loading skeleton */
+.skeleton {
+  border-radius: 0.5rem;
+  background: var(--border);
+}
+
+.skeleton-shimmer {
+  border-radius: 0.5rem;
+  background: var(--border);
+  background: linear-gradient(
+    90deg,
+    var(--border) 25%,
+    rgba(231, 229, 228, 0.3) 50%,
+    var(--border) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Hero SVG dot pattern */
+.hero-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%230f766e' fill-opacity='0.05'%3E%3Ccircle cx='5' cy='5' r='1'/%3E%3Ccircle cx='15' cy='15' r='1'/%3E%3Ccircle cx='25' cy='25' r='1'/%3E%3Ccircle cx='35' cy='35' r='1'/%3E%3Ccircle cx='5' cy='15' r='1'/%3E%3Ccircle cx='15' cy='25' r='1'/%3E%3Ccircle cx='25' cy='35' r='1'/%3E%3Ccircle cx='35' cy='5' r='1'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 40px 40px;
+  position: relative;
+}
+
+/* Feature card with subtle shadow and dot */
+.feature-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  position: relative;
+}
+
+.feature-dot {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 4px;
+  height: 4px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+/* Highlighted word with underline */
+.highlight-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.highlight-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent);
+}
+
+/* Page transitions */
+.page-transition {
+  animation: pageFadeIn 0.3s ease-out;
+}
+
+/* Consistent navbar */
+.navbar {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(250, 250, 249, 0.8);
+  border-bottom: 1px solid rgba(231, 229, 228, 0.5);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+/* Consistent input focus */
+.input-focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+}
+
+/* Hero animations */
+@keyframes heroFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroStatsFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes heroButtonFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes featureCardFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes statCardSlideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

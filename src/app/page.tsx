@@ -3,20 +3,38 @@ import { Search, GraduationCap, MapPin, TrendingUp } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#fafaf9]">
+    <div className="min-h-screen bg-[#fafaf9] page-transition">
       {/* Hero Section */}
-      <section className="px-4 py-20 md:py-32">
-        <div className="mx-auto max-w-4xl text-center">
-          <h1 className="mb-6 text-4xl font-bold text-[#111110] md:text-6xl">
-            Find Your Perfect College
+      <section className="hero-pattern relative px-4 py-32 md:py-40 overflow-hidden">
+        <div className="mx-auto max-w-4xl text-center relative z-10">
+          <h1 className="mb-6 text-5xl md:text-7xl font-bold text-[#111110] leading-tight" style={{ animation: 'heroFadeInUp 0.4s ease-out both' }}>
+            Find Your <span className="highlight-underline">Perfect</span> College
           </h1>
           <p className="mb-8 text-lg text-[#78716c] md:text-xl">
             Discover top engineering colleges across India with detailed insights, 
             rankings, and placement statistics.
           </p>
+          
+          {/* Stats Row */}
+          <div className="mb-10 flex justify-center gap-8 text-sm text-[#78716c]" style={{ animation: 'heroStatsFadeIn 0.1s ease-out 0.3s both' }}>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-[#0f766e]">500+</div>
+              <div className="text-xs">Students helped</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-[#0f766e]">15</div>
+              <div className="text-xs">Colleges</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-[#0f766e]">8</div>
+              <div className="text-xs">States</div>
+            </div>
+          </div>
+          
           <Link 
             href="/colleges"
-            className="inline-flex items-center gap-2 rounded-lg bg-[#0f766e] px-6 py-3 text-white transition-colors hover:bg-[#0d635c]"
+            className="inline-flex items-center gap-2 rounded-lg btn-accent px-6 py-3 text-white"
+            style={{ animation: 'heroButtonFadeIn 0.2s ease-out 0.5s both' }}
           >
             <Search className="h-5 w-5" />
             Explore Colleges
@@ -38,7 +56,8 @@ export default function Home() {
           
           <div className="grid gap-8 md:grid-cols-3">
             {/* Feature Card 1 */}
-            <div className="rounded-lg border border-[#e7e5e4] bg-white p-8 shadow-sm">
+            <div className="feature-card rounded-lg border border-[#e7e5e4] bg-white p-8" style={{ animation: 'featureCardFadeInUp 0.1s ease-out both' }}>
+              <div className="feature-dot"></div>
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#0f766e]/10">
                 <Search className="h-6 w-6 text-[#0f766e]" />
               </div>
@@ -51,7 +70,8 @@ export default function Home() {
             </div>
 
             {/* Feature Card 2 */}
-            <div className="rounded-lg border border-[#e7e5e4] bg-white p-8 shadow-sm">
+            <div className="feature-card rounded-lg border border-[#e7e5e4] bg-white p-8" style={{ animation: 'featureCardFadeInUp 0.2s ease-out both' }}>
+              <div className="feature-dot"></div>
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#0f766e]/10">
                 <GraduationCap className="h-6 w-6 text-[#0f766e]" />
               </div>
@@ -64,7 +84,8 @@ export default function Home() {
             </div>
 
             {/* Feature Card 3 */}
-            <div className="rounded-lg border border-[#e7e5e4] bg-white p-8 shadow-sm">
+            <div className="feature-card rounded-lg border border-[#e7e5e4] bg-white p-8" style={{ animation: 'featureCardFadeInUp 0.3s ease-out both' }}>
+              <div className="feature-dot"></div>
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#0f766e]/10">
                 <MapPin className="h-6 w-6 text-[#0f766e]" />
               </div>
@@ -113,7 +134,7 @@ export default function Home() {
           <div className="flex gap-4 justify-center">
             <Link 
               href="/colleges"
-              className="inline-flex items-center gap-2 rounded-lg bg-[#0f766e] px-6 py-3 text-white transition-colors hover:bg-[#0d635c]"
+              className="inline-flex items-center gap-2 rounded-lg btn-accent px-6 py-3 text-white"
             >
               <TrendingUp className="h-5 w-5" />
               Browse Colleges

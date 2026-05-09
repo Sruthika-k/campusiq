@@ -56,7 +56,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fafaf9] flex items-center justify-center px-4">
+    <div className="hero-pattern min-h-screen flex items-center justify-center px-4 page-transition">
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="mb-8 text-center">
@@ -84,7 +84,7 @@ export default function RegisterPage() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
-                  className="w-full rounded-lg border border-[#e7e5e4] bg-white py-3 pl-10 pr-4 text-[#111110] placeholder-[#78716c] focus:border-[#0f766e] focus:outline-none focus:ring-1 focus:ring-[#0f766e]"
+                  className="w-full rounded-lg border border-[#e7e5e4] bg-white py-3 pl-10 pr-4 text-[#111110] placeholder-[#78716c] input-focus"
                   placeholder="Enter your full name"
                 />
               </div>
@@ -103,7 +103,7 @@ export default function RegisterPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full rounded-lg border border-[#e7e5e4] bg-white py-3 pl-10 pr-4 text-[#111110] placeholder-[#78716c] focus:border-[#0f766e] focus:outline-none focus:ring-1 focus:ring-[#0f766e]"
+                  className="w-full rounded-lg border border-[#e7e5e4] bg-white py-3 pl-10 pr-4 text-[#111110] placeholder-[#78716c] input-focus"
                   placeholder="Enter your email"
                 />
               </div>
@@ -123,7 +123,7 @@ export default function RegisterPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   minLength={8}
-                  className="w-full rounded-lg border border-[#e7e5e4] bg-white py-3 pl-10 pr-12 text-[#111110] placeholder-[#78716c] focus:border-[#0f766e] focus:outline-none focus:ring-1 focus:ring-[#0f766e]"
+                  className="w-full rounded-lg border border-[#e7e5e4] bg-white py-3 pl-10 pr-12 text-[#111110] placeholder-[#78716c] input-focus"
                   placeholder="Create a password"
                 />
                 <button
@@ -150,7 +150,7 @@ export default function RegisterPage() {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                   minLength={8}
-                  className="w-full rounded-lg border border-[#e7e5e4] bg-white py-3 pl-10 pr-12 text-[#111110] placeholder-[#78716c] focus:border-[#0f766e] focus:outline-none focus:ring-1 focus:ring-[#0f766e]"
+                  className="w-full rounded-lg border border-[#e7e5e4] bg-white py-3 pl-10 pr-12 text-[#111110] placeholder-[#78716c] input-focus"
                   placeholder="Confirm your password"
                 />
                 <button
@@ -174,7 +174,7 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-lg bg-[#0f766e] py-3 text-white transition-colors hover:bg-[#0d635c] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full rounded-lg btn-accent py-3 text-white disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <div className="flex items-center justify-center">

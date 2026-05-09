@@ -67,7 +67,7 @@ export default function SavedCollegesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fafaf9]">
+    <div className="min-h-screen bg-[#fafaf9] page-transition">
       <div className="px-4 py-8">
         <div className="mx-auto max-w-6xl">
           {/* Header */}
@@ -101,7 +101,7 @@ export default function SavedCollegesPage() {
               </p>
               <Link
                 href="/colleges"
-                className="inline-flex items-center gap-2 rounded-lg bg-[#0f766e] px-6 py-3 text-white transition-colors hover:bg-[#0d635c]"
+                className="inline-flex items-center gap-2 rounded-lg btn-accent px-6 py-3 text-white"
               >
                 Explore Colleges
               </Link>
@@ -117,10 +117,11 @@ export default function SavedCollegesPage() {
 
               {/* Saved Colleges Grid */}
               <div className="grid gap-6 lg:grid-cols-2">
-                {savedColleges.map((college) => (
+                {savedColleges.map((college, index) => (
                   <div
                     key={college.id}
-                    className="rounded-lg border border-[#e7e5e4] bg-white p-6 shadow-sm"
+                    className={`college-card rounded-lg border border-[#e7e5e4] bg-white p-6 shadow-sm card-animate`}
+                    style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <div className="mb-4">
                       <div className="flex items-start justify-between mb-2">
@@ -141,9 +142,9 @@ export default function SavedCollegesPage() {
 
                     <div className="mb-4 space-y-2">
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-1">
-                          <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                          <span className="text-sm font-medium text-[#111110]">{college.rating}</span>
+                        <div className="rating-badge">
+                          <Star className="h-3 w-3 fill-white" />
+                          <span>{college.rating}</span>
                         </div>
                         <div className="flex items-center gap-1">
                           <DollarSign className="h-4 w-4 text-[#78716c]" />
@@ -201,7 +202,7 @@ export default function SavedCollegesPage() {
                 <p className="mb-6 text-[#78716c]">
                   Compare your shortlisted colleges side by side to make the best decision.
                 </p>
-                <button className="rounded-lg bg-[#0f766e] px-6 py-3 text-white transition-colors hover:bg-[#0d635c]">
+                <button className="rounded-lg btn-accent px-6 py-3 text-white">
                   Compare Colleges
                 </button>
               </div>

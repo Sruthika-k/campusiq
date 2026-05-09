@@ -39,7 +39,7 @@ export default function CollegeDetailPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fafaf9]">
+    <div className="min-h-screen bg-[#fafaf9] page-transition">
       <div className="px-4 py-8">
         <div className="mx-auto max-w-4xl">
           {/* Back Button */}
@@ -77,7 +77,7 @@ export default function CollegeDetailPage() {
 
           {/* Stats Grid */}
           <div className="mb-8 grid gap-6 md:grid-cols-4">
-            <div className="rounded-lg border border-[#e7e5e4] bg-white p-6 text-center">
+            <div className="stat-card rounded-lg border border-[#e7e5e4] bg-white p-6 text-center" style={{ animation: 'statCardSlideInUp 0.1s ease-out both' }}>
               <div className="mb-2 flex justify-center">
                 <div className="rounded-lg bg-[#0f766e]/10 p-3">
                   <Award className="h-6 w-6 text-[#0f766e]" />
@@ -87,7 +87,7 @@ export default function CollegeDetailPage() {
               <div className="text-sm text-[#78716c]">Rating</div>
             </div>
 
-            <div className="rounded-lg border border-[#e7e5e4] bg-white p-6 text-center">
+            <div className="stat-card rounded-lg border border-[#e7e5e4] bg-white p-6 text-center" style={{ animation: 'statCardSlideInUp 0.18s ease-out both' }}>
               <div className="mb-2 flex justify-center">
                 <div className="rounded-lg bg-[#0f766e]/10 p-3">
                   <DollarSign className="h-6 w-6 text-[#0f766e]" />
@@ -97,7 +97,7 @@ export default function CollegeDetailPage() {
               <div className="text-sm text-[#78716c]">Annual Fees</div>
             </div>
 
-            <div className="rounded-lg border border-[#e7e5e4] bg-white p-6 text-center">
+            <div className="stat-card rounded-lg border border-[#e7e5e4] bg-white p-6 text-center" style={{ animation: 'statCardSlideInUp 0.26s ease-out both' }}>
               <div className="mb-2 flex justify-center">
                 <div className="rounded-lg bg-[#0f766e]/10 p-3">
                   <Users className="h-6 w-6 text-[#0f766e]" />
@@ -107,7 +107,7 @@ export default function CollegeDetailPage() {
               <div className="text-sm text-[#78716c]">Placements</div>
             </div>
 
-            <div className="rounded-lg border border-[#e7e5e4] bg-white p-6 text-center">
+            <div className="stat-card rounded-lg border border-[#e7e5e4] bg-white p-6 text-center" style={{ animation: 'statCardSlideInUp 0.34s ease-out both' }}>
               <div className="mb-2 flex justify-center">
                 <div className="rounded-lg bg-[#0f766e]/10 p-3">
                   <Calendar className="h-6 w-6 text-[#0f766e]" />
@@ -154,7 +154,7 @@ export default function CollegeDetailPage() {
               Take the first step towards your engineering career at {mockCollege.name}
             </p>
             <div className="flex gap-4 justify-center">
-              <button className="rounded-lg bg-[#0f766e] px-6 py-3 text-white transition-colors hover:bg-[#0d635c]">
+              <button className="rounded-lg btn-accent px-6 py-3 text-white">
                 Visit Official Website
               </button>
               <button className="rounded-lg border border-[#e7e5e4] bg-white px-6 py-3 text-[#111110] transition-colors hover:bg-[#fafaf9]">

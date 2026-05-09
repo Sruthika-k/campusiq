@@ -33,9 +33,9 @@ export default function SaveButton({ collegeId, isSaved = false, onToggle }: Sav
     <button
       onClick={handleToggle}
       disabled={loading}
-      className={`inline-flex items-center gap-2 rounded-lg px-4 py-2 font-medium transition-colors ${
+      className={`inline-flex items-center gap-2 rounded-lg px-4 py-2 font-medium transition-all ${
         saved
-          ? "bg-[#0f766e] text-white hover:bg-[#0d635c]"
+          ? "btn-accent text-white"
           : "border border-[#e7e5e4] bg-white text-[#111110] hover:bg-[#fafaf9]"
       } disabled:opacity-50 disabled:cursor-not-allowed`}
     >

@@ -131,7 +131,7 @@ export default function CollegesPage() {
   const paginatedColleges = filteredColleges.slice(startIndex, startIndex + collegesPerPage);
 
   return (
-    <div className="min-h-screen bg-[#fafaf9]">
+    <div className="min-h-screen bg-[#fafaf9] page-transition">
       <div className="px-4 py-8">
         <div className="mx-auto max-w-7xl">
           {/* Header */}
@@ -154,7 +154,7 @@ export default function CollegesPage() {
                 placeholder="Search colleges by name or location..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full rounded-lg border border-[#e7e5e4] bg-white py-3 pl-10 pr-4 text-[#111110] placeholder-[#78716c] focus:border-[#0f766e] focus:outline-none focus:ring-1 focus:ring-[#0f766e]"
+                className="w-full rounded-lg border border-[#e7e5e4] bg-white py-3 pl-10 pr-4 text-[#111110] placeholder-[#78716c] input-focus"
               />
             </div>
 
@@ -175,7 +175,7 @@ export default function CollegesPage() {
               <select
                 value={selectedFee}
                 onChange={(e) => setSelectedFee(e.target.value)}
-                className="rounded-lg border border-[#e7e5e4] bg-white px-4 py-3 text-[#111110] focus:border-[#0f766e] focus:outline-none focus:ring-1 focus:ring-[#0f766e]"
+                className="rounded-lg border border-[#e7e5e4] bg-white px-4 py-3 text-[#111110] input-focus"
               >
                 {feeRanges.map((range) => (
                   <option key={range} value={range}>
@@ -187,7 +187,7 @@ export default function CollegesPage() {
               <select
                 value={selectedCourse}
                 onChange={(e) => setSelectedCourse(e.target.value)}
-                className="rounded-lg border border-[#e7e5e4] bg-white px-4 py-3 text-[#111110] focus:border-[#0f766e] focus:outline-none focus:ring-1 focus:ring-[#0f766e]"
+                className="rounded-lg border border-[#e7e5e4] bg-white px-4 py-3 text-[#111110] input-focus"
               >
                 {courses.map((course) => (
                   <option key={course} value={course}>
@@ -207,11 +207,12 @@ export default function CollegesPage() {
 
           {/* College Grid */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {paginatedColleges.map((college) => (
+            {paginatedColleges.map((college, index) => (
               <Link
                 key={college.id}
                 href={`/colleges/${college.id}`}
-                className="group rounded-lg border border-[#e7e5e4] bg-white p-6 shadow-sm transition-all hover:shadow-md"
+                className={`college-card group rounded-lg border border-[#e7e5e4] bg-white p-6 shadow-sm card-animate`}
+                style={{ animationDelay: `${index * 0.05}s` }}
               >
                 <div className="mb-4">
                   <h3 className="mb-2 text-xl font-semibold text-[#111110] group-hover:text-[#0f766e]">
@@ -225,9 +226,9 @@ export default function CollegesPage() {
 
                 <div className="mb-4 space-y-2">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-1">
-                      <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                      <span className="text-sm font-medium text-[#111110]">{college.rating}</span>
+                    <div className="rating-badge">
+                      <Star className="h-3 w-3 fill-white" />
+                      <span>{college.rating}</span>
                     </div>
                     <div className="flex items-center gap-1">
                       <DollarSign className="h-4 w-4 text-[#78716c]" />
