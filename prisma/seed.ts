@@ -1,10 +1,8 @@
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '../src/lib/prisma'
 
 if (!process.env.DATABASE_URL) {
   throw new Error('DATABASE_URL is not set')
 }
-
-const prisma = new PrismaClient()
 
 const colleges = [
   { name: "IIT Bombay", location: "Mumbai", state: "Maharashtra", fees: 200000, rating: 4.8, courses: ["CS", "EE", "ME", "CE"], placements: 98, established: 1958, description: "Premier engineering institute known for research and industry connections." },
